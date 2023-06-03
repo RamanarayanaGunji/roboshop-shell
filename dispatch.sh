@@ -10,7 +10,6 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< extract data from file >>>>>>>>>>>>>>>>>>
 cd /app
 unzip /tmp/dispatch.zip
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< dispatching >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-
 go mod init dispatch
 go get
 go build
@@ -18,6 +17,5 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>
 cp /root/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 systemctl daemon-reload
-
 systemctl enable dispatch
 systemctl start dispatch
