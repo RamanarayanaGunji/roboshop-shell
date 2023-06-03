@@ -3,8 +3,7 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 #/root/roboshop-shell/
 #source common.sh
-ls
-exit
+
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< open node source >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install node js >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
