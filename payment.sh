@@ -12,13 +12,11 @@ mkdir /app
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< Download the app content>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install maven >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-cd /app
+cd /ap
 unzip /tmp/payment.zip
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install dependencies >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-
 pip3.6 install -r requirements.txt
-echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-
+echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 sed -i -e "s|payment_app_user_password|${payment_app_user_password}|" ${script_path}/payment.service
 cp /root/roboshop-shell/payment.service /etc/systemd/system/payment.service
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start payment services>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
