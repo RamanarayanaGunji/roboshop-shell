@@ -5,7 +5,7 @@ source common.sh
 yum install maven -y
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< add user and directory(app) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 
-useradd=${app_user}
+useradd ${app_user}
 rm -rf /app
 mkdir /app
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< Download app content >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
