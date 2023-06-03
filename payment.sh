@@ -18,6 +18,11 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install dependencies >>>>>>>>>>>>>>>>>>>>
 
 pip3.6 install -r requirements.txt
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
+if [-z ${payment_app_user_password}];
+then
+  echo input roboshop password is missing
+  exit
+fi
 sed -i -e "s|payment_app_user_password|${payment_app_user_password}|" ${script_path}/payment.service
 cp /root/roboshop-shell/payment.service /etc/systemd/system/payment.service
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start payment services>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m

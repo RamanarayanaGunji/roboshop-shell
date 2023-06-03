@@ -8,5 +8,10 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>
 systemctl enable mysqld
 systemctl start mysqld
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< secure installations >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
+if [-z ${mysql_app_user_password}];
+then
+  echo input roboshop password is missing
+  exit
+fi
 mysql_secure_installation --set-root-pass RoboShop@1
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< password credentials >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"

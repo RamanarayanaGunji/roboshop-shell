@@ -10,5 +10,10 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<<Start rabbitmq services>>>>>>>>>>>>>>>>>>>
 systemctl enable rabbitmq-server
 systemctl start rabbitmq-server
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<<Add application user to rabbitmq and passing password >>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
+if [-z ${rabbitmq_app_user_password}];
+then
+  echo input roboshop password is missing
+  exit
+fi
 rabbitmqctl add_user roboshop ${rabbitmq_app_user_password}
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
