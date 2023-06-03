@@ -1,3 +1,6 @@
+script_path=${dirname $0}
+Source ${script_path}/common.sh
+exit
 source common.sh
 
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< installing user nodejs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
