@@ -1,7 +1,10 @@
+source common.sh
+
+
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install  GOlang >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 yum install golang -y
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< Add application useras roboshop >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-useradd roboshop
+useradd = ${app_user}
 rm -rf /app
 mkdir /app
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< download roboshop-artifacts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m

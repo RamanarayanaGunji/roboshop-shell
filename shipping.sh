@@ -1,8 +1,11 @@
-echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install maven >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
+source common.sh
+
+
+
 yum install maven -y
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< add user and directory(app) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 
-useradd roboshop
+useradd=${app_user}
 rm -rf /app
 mkdir /app
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< Download app content >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m

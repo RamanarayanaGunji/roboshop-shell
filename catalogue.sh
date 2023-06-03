@@ -1,14 +1,17 @@
+source common.sh
+
 echo -e "\e[31m configurationrepos\e[0m"
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[31m installing nodejs software \e[0m"
 yum install nodejs -y
 echo -e "\e[31m add application user \e[0m"
-useradd roboshop
+useradd =${app_user}
 echo -e "\e[31m creating app directory \e[0m"
 rm -rf /app
 rmdir /app
 mkdir /app
+
 echo -e "\e[31m download app content \e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 echo -e "\e[31m go to app directory/change directory \e[0m"
