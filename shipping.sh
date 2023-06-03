@@ -29,6 +29,11 @@ systemctl start shipping
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install mysql >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 yum install mysql -y
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< passing passowrd as user input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
+if [-z ${mysql_root_password}];
+then
+  echo input roboshop password is missing
+  exit
+fi
 mysql -h mysql.devopsb72r.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<<restart the shipping >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
