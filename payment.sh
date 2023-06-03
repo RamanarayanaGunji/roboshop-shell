@@ -1,7 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
-
+payment_app_user_password=$1
 
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install python >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 yum install python36 gcc python3-devel -y
@@ -18,6 +18,7 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install dependencies >>>>>>>>>>>>>>>>>>>>
 
 pip3.6 install -r requirements.txt
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
+sed -i -e "s|payment_app_user_password|${payment_app_user_password}|" ${script_path}/payment.service
 cp /root/roboshop-shell/payment.service /etc/systemd/system/payment.service
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start payment services>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 systemctl daemon-reload
