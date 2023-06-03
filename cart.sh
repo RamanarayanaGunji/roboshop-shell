@@ -1,3 +1,8 @@
+script=$(realpath "$0")
+realpath $0
+exit
+script_path=$(dirname "$script")
+
 source common.sh
 
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< open node source >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
