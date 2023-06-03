@@ -22,12 +22,14 @@ echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<<download maven dependencies>>>>>>>>>>>>>>>
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install mysql and load the schema >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-cp /root/roboshop-shell/shipping.service /etc/systemd/system/shipping.serviceecho -e
+cp /root/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
+echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< start services >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 systemctl enable shipping
 systemctl start shipping
+echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install mysql >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 yum install mysql -y
-
+echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< passing passowrd as user input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 mysql -h mysql.devopsb72r.online -uroot -p${mysql _root_password} < /app/schema/shipping.sql
 
-
+echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<<restart the shipping >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 systemctl restart shipping
