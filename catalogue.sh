@@ -1,4 +1,4 @@
-echo –e "\e[31m configurationrepos\e[0m"
+echo -e "\e[31m configurationrepos\e[0m"
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[31m installing nodejs software \e[0m"
@@ -24,7 +24,7 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 echo -e "\e[31m cpoy mongo repos \e[0m"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[31m install mongo db client \e[0m"
 yum install mongodb-org-shell -y
 echo -e "\e[31m load schema \e[0m"
