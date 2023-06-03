@@ -10,4 +10,3 @@ systemctl start mysqld
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< secure installations >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 mysql_secure_installation --set-root-pass RoboShop@1
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< password credentials >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
-mysql -uroot -pRoboShop@1
