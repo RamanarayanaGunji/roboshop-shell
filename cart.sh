@@ -1,14 +1,15 @@
 script=$(realpath "$0")
-realpath $0
-exit
 script_path=$(dirname "$script")
-
-source common.sh
-
+source ${script_path}/common.sh
+#/root/roboshop-shell/
+#source common.sh
+ls
+exit
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< open node source >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install node js >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
 yum install nodejs -y
+
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< add user as roboshop and creat directoty as app>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
 useradd ${app_user}
 rm -rf /app
