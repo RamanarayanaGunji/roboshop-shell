@@ -2,7 +2,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
-mysql _root_password=$1
+mysql_root_password=$1
 yum install maven -y
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< add user and directory(app) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 
@@ -29,7 +29,7 @@ systemctl start shipping
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< install mysql >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 yum install mysql -y
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< passing passowrd as user input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
-mysql -h mysql.devopsb72r.online -uroot -p${mysql _root_password} < /app/schema/shipping.sql
+mysql -h mysql.devopsb72r.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 
 echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<<restart the shipping >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"m
 systemctl restart shipping
