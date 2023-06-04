@@ -46,6 +46,7 @@ func_checking_status()
   else
     echo FALIED
   func_print_head " function checking_status completed "
+  exit 1
   fi
 }
 
