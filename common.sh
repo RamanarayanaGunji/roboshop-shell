@@ -21,12 +21,20 @@ func_schema_setup()
     func_print_head" changing mongo ip address "
     mongo --host mongodb.devopsb72r.online </app/schema/user.js
   fi
-  if ["$schema_setup" == "mysql" ]; then
+  if ["${schema_setup}" == "mysql"]; then
   func_print_head "install mysql "
   yum install mysql -y
   func_print_head " passing passowrd as user input "
   mysql -h mysql.devopsb72r.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
   fi
+   if ["$schema_setup" == "payment" ]; then
+    func_print_head "install mysql "
+    yum install mysql -y
+    func_print_head " passing password as user input "
+    sed -i -e "s|payment_app_user_password|${payment_app_user_password}|" ${script_path}/${component}.service
+
+    fi
+
 }
 
 func_nodejs()
@@ -84,6 +92,32 @@ func_print_head " icalling inner function schema setup "
  func_schema_setup
  func_print_head "restart the " ${component}
   systemctl restart ${component}
+}
+func_payment()
+{
+  func_print_head "install python "
+  yum install python36 gcc python3-devel -y
+ func_print_head " Add application user "
+  useradd ${app_user}
+  rm -rf /app
+  mkdir /app
+  func_print_head " Download the app content"
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+ func_print_head " install maven "
+  cd /ap
+  unzip /tmp/${component}.zip
+ func_print_head " install dependencies "
+  pip3.6 install -r requirements.txt
+  func_print_head " start services "
+
+  sed -i -e "s|payment_app_user_password|${payment_app_user_password}|" ${script_path}/${component}.service
+
+
+  cp /root/roboshop-shell/${component}.service /etc/systemd/system/${component}.service
+ func_print_head "start payment services"
+  systemctl daemon-reload
+  systemctl enable ${component}
+  systemctl start ${component}
 }
 
 
