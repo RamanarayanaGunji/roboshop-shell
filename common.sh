@@ -26,6 +26,7 @@ func_schema_setup()
   yum install mysql -y
   func_print_head " passing passowrd as user input "
   mysql -h mysql.devopsb72r.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+  fi
 }
 
 func_nodejs()
