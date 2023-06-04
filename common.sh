@@ -1,10 +1,11 @@
 ##assign roboshop in one variable in the files, where we have this
 ##  roboshop and able to access to all files
 app_user=roboshop
-
+log_file=/tmp/roboshop.log
 ###script=$(realpath "$0")
 ###script_path=$(dirname "$script")
-
+###&>>$log_file
+###&>>$log_file
 ##declare a function
 func_print_head()
 {
@@ -17,8 +18,8 @@ func_schema_setup()
     func_print_head "copy the file"
     func_checking_status $?
     cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
-    func_print_head "install mongodb "
-    yum install mongodb-org-shell -y
+    func_print_head "install mongodb " &>>$log_file
+    yum install mongodb-org-shell -y &>>$log_file
     func_print_head" changing mongo ip address "
     mongo --host mongodb.devopsb72r.online </app/schema/user.js
   fi
@@ -85,34 +86,34 @@ func_nodejs()
 func_java()
 {
   func_checking_status $?
-  yum install maven -y
+  yum install maven -y &>>$log_file
    func_print_head  "add user and directory(app)"
 
-  useradd ${app_user}
+  useradd ${app_user} &>>$log_file
   rm -rf /app
   mkdir /app
   func_checking_status $?
-   func_print_head "Download app content "
+   func_print_head "Download app content " &>>$log_file
 
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
 func_checking_status $?
-  " unzip/extract app content the file"
+  " unzip/extract app content the file" &>>$log_file
   cd /app
   unzip /tmp/${component}.zip
 
    func_print_head "download maven dependencies"
 func_checking_status $?
-  mvn clean package
-  mv target/${component}-1.0.jar ${component}.jar
+  mvn clean package &>>$log_file
+  mv target/${component}-1.0.jar ${component}.jar &>>$log_file
   func_print_head " install mysql and load the schema "
-  cp /root/roboshop-shell/${component}.service /etc/systemd/system/${component}.service
+  cp /root/roboshop-shell/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   func_checking_status $?
  func_print_head " start services "
   systemctl enable ${component}
   systemctl start ${component}
   func_checking_status $?
 func_print_head " icalling inner function schema setup "
- func_schema_setup
+ func_schema_setup  &>>$log_file
  func_checking_status $?
  func_print_head "restart the " ${component}
   systemctl restart ${component}
