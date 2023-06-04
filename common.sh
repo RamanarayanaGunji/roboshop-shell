@@ -41,13 +41,13 @@ func_checking_status $?
 func_checking_status()
 {
   func_print_head " function checking status starting "
-  if[ $? -eq 0 ]; then
-    echo command executes successfully.
-  else
-    echo FALIED
-  func_print_head " function checking_status completed "
-  exit 1
-  fi
+   if [ $1 -eq 0 ]; then
+      echo -e "\e[32mSUCCESS\e[0m"
+   else
+    echo FAILED
+    func_print_head " function checking_status completed "
+   exit 1
+   fi
 }
 
 func_nodejs()
