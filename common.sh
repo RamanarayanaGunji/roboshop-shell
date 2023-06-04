@@ -41,7 +41,7 @@ func_checking_status $?
 func_checking_status()
 {
   func_print_head " function checking status starting "
-  if[ $? -eq 0]; then
+  if[ $? -eq 0 ]; then
     echo command executes successfully.
   else
     echo FALIED
