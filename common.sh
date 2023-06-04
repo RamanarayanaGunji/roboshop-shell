@@ -84,12 +84,14 @@ func_nodejs()
 }
 func_java()
 {
+  func_checking_status $?
   yum install maven -y
    func_print_head  "add user and directory(app)"
 
   useradd ${app_user}
   rm -rf /app
   mkdir /app
+  func_checking_status $?
    func_print_head "Download app content "
 
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
