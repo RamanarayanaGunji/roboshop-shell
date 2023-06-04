@@ -15,8 +15,8 @@ func_Schema_setup()
 {
   if["$schema_setup"==mongo];then
     func_print_head "copy the file"
-     cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
-     func_print_head "install mongodb "
+    cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+    func_print_head "install mongodb "
      yum install mongodb-org-shell -y
      func_print_head" changing mongo ip address "
      mongo --host mongodb.devopsb72r.online </app/schema/user.js
