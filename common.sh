@@ -11,15 +11,15 @@ func_print_head()
   echo -e "\e[31m<<<<<<<<<<<<<<<<<<<<<<< $* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
 }
 
-func_Schema_setup()
+func_schema_setup()
 {
-  if["$schema_setup"==mongo];then
+    if [ "$schema_setup" == "mongo" ]; then
     func_print_head "copy the file"
     cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
     func_print_head "install mongodb "
-     yum install mongodb-org-shell -y
-     func_print_head" changing mongo ip address "
-     mongo --host mongodb.devopsb72r.online </app/schema/user.js
+    yum install mongodb-org-shell -y
+    func_print_head" changing mongo ip address "
+    mongo --host mongodb.devopsb72r.online </app/schema/user.js
   fi
 }
 
@@ -47,7 +47,7 @@ func_nodejs()
   systemctl daemon-reload
   systemctl enable ${component}
   systemctl start ${component}
-  func_Schema_setup
+  func_schema_setup
 }
 
 
