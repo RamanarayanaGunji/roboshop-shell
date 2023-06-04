@@ -4,7 +4,6 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_root_password=$1
 if [ -z "$mysql_root_password" ]; then
-then
   echo input roboshop password is missing
   exit
 fi
