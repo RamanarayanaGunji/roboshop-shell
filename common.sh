@@ -49,6 +49,38 @@ func_nodejs()
   systemctl start ${component}
   func_schema_setup
 }
+func_java()
+{
+  yum install maven -y
+   func_print_head  "add user and directory(app)"
+
+  useradd ${app_user}
+  rm -rf /app
+  mkdir /app
+   func_print_head "Download app content "
+
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+
+  " unzip/extract app content the file"
+  cd /app
+  unzip /tmp/${component}.zip
+
+   func_print_head "download maven dependencies"
+
+  mvn clean package
+  mv target/${component}-1.0.jar ${component}.jar
+  func_print_head " install mysql and load the schema "
+  cp /root/roboshop-shell/${component}.service /etc/systemd/system/${component}.service
+ func_print_head " start services "
+  systemctl enable ${component}
+  systemctl start ${component}
+ func_print_head "install mysql "
+  yum install mysql -y
+ func_print_head " passing passowrd as user input "
+ func_print_head "restart the " ${component}
+  systemctl restart ${component}
+
+}
 
 
 
