@@ -13,21 +13,20 @@ func_print_head()
 
 func_schema_setup()
 {
-    if [ "$schema_setup" == "mongo" ]; then
+  if [ "$schema_setup" == "mongo" ]; then
     func_print_head "copy the file"
-    func_checking_status
+    func_checking_status $?
     cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
     func_print_head "install mongodb "
     yum install mongodb-org-shell -y
     func_print_head" changing mongo ip address "
-    func_checking_status()
     mongo --host mongodb.devopsb72r.online </app/schema/user.js
   fi
-  func_checking_status()
+func_checking_status $?
   if ["${schema_setup}" == "mysql"]; then
   func_print_head "install mysql "
   yum install mysql -y
-  func_print_head " passing passowrd as user input "
+  func_print_head " passing password as user input "
   mysql -h mysql.devopsb72r.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
   fi
    if ["$schema_setup" == "payment" ]; then
@@ -93,7 +92,7 @@ func_java()
    func_print_head "Download app content "
 
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
-func_checking_status()
+func_checking_status $?
   " unzip/extract app content the file"
   cd /app
   unzip /tmp/${component}.zip
