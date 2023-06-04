@@ -13,7 +13,7 @@ func_print_head()
 
 func_Schema_setup()
 {
-  if[${schema_setup}=mongo]
+  if[${schema_setup}=mongo];
   then
     func_print_head "copy the file"
      cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
