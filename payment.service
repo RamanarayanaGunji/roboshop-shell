@@ -10,11 +10,7 @@ Environment=USER_HOST=user.devopsb72r.online
 Environment=USER_PORT=8080
 Environment=AMQP_HOST=rabbitmq.devopsb72r.online
 Environment=AMQP_USER=roboshop
-if [-z ${payment_app_user_password}];
-then
-  echo input roboshop password is missing
-  exit
-fi
+
 Environment=AMQP_PASS=${payment_app_user_password}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
