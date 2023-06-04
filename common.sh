@@ -21,6 +21,11 @@ func_schema_setup()
     func_print_head" changing mongo ip address "
     mongo --host mongodb.devopsb72r.online </app/schema/user.js
   fi
+  if ["$schema_setup" == "mysql" ]; then
+  func_print_head "install mysql "
+  yum install mysql -y
+  func_print_head " passing passowrd as user input "
+  mysql -h mysql.devopsb72r.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 }
 
 func_nodejs()
@@ -74,12 +79,10 @@ func_java()
  func_print_head " start services "
   systemctl enable ${component}
   systemctl start ${component}
- func_print_head "install mysql "
-  yum install mysql -y
- func_print_head " passing passowrd as user input "
+func_print_head " icalling inner function schema setup "
+ func_schema_setup
  func_print_head "restart the " ${component}
   systemctl restart ${component}
-
 }
 
 
